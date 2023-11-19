@@ -1,6 +1,8 @@
 HELP.md
 .gradle
 build/
+gradlew*
+settings.gradle
 !**/src/main/**
 !**/src/test/**
 
