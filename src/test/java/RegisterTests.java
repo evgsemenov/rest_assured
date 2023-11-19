@@ -1,11 +1,19 @@
+import io.restassured.RestAssured;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import static io.restassured.RestAssured.given;
+import static io.restassured.RestAssured.*;
 import static io.restassured.http.ContentType.JSON;
 
 import static org.hamcrest.Matchers.is;
 
 public class RegisterTests {
+
+    @BeforeAll
+    static void beforeAll(){
+        RestAssured.baseURI = "https://reqres.in/";
+        RestAssured.basePath = "api/";
+    }
 
     @Test
     void successfullRegistrationTest(){
@@ -18,7 +26,7 @@ public class RegisterTests {
                 .body(authBody)
                 .contentType(JSON)
                 .when()
-                .post("https://reqres.in/api/register")
+                .post(baseURI + basePath + "register")
                 .then()
                 .log().status()
                 .log().body()
@@ -38,7 +46,7 @@ public class RegisterTests {
                 .body(authBody)
                 .contentType(JSON)
                 .when()
-                .post("https://reqres.in/api/register")
+                .post(baseURI + basePath + "register")
                 .then()
                 .log().status()
                 .log().body()
@@ -57,7 +65,7 @@ public class RegisterTests {
                 .body(authBody)
                 .contentType(JSON)
                 .when()
-                .post("https://reqres.in/api/register")
+                .post(baseURI + basePath + "register")
                 .then()
                 .log().status()
                 .log().body()
@@ -76,7 +84,7 @@ public class RegisterTests {
                 .body(authBody)
                 .contentType(JSON)
                 .when()
-                .post("https://reqres.in/api/register")
+                .post(baseURI + basePath + "register")
                 .then()
                 .log().status()
                 .log().body()
@@ -90,7 +98,7 @@ public class RegisterTests {
                 .log().uri()
                 .log().method()
                 .when()
-                .get("https://reqres.in/api/unknown/23")
+                .get(baseURI + basePath + "unknown/23")
                 .then()
                 .log().status()
                 .log().body()
